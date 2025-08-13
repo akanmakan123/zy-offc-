@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZY-OFFC Payment</title>
+    <style>
+        /* Smooth CSS with animations and HD effects */
+        :root {
+            --primary: #00a8ff;
+            --secondary: #00ff9d;
+            --dark: #0a0a0a;
+            --light: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(0, 168, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(0, 255, 157, 0.1) 0%, transparent 50%);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+        
+        .payment-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        .payment-method {
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 16px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .payment-method:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .method-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .method-icon {
+            width: 50px;
+            height: 50px;
+            margin-right: 1rem;
+            object-fit: contain;
+        }
+        
+        .method-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .method-details {
+            margin-bottom: 1.5rem;
+        }
+        
+        .method-number {
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            display: inline-block;
+        }
+        
+        .copy-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-top: 0.5rem;
+        }
+        
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 168, 255, 0.3);
+        }
+        
+        .coming-soon {
+            font-style: italic;
+            opacity: 0.7;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            opacity: 0.7;
+            font-size: 0.9rem;
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Glow effects */
+        .glow {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 168, 255, 0.2) 0%, transparent 70%);
+            z-index: 0;
+        }
+        
+        .glow-1 {
+            top: 20%;
+            left: 10%;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .glow-2 {
+            bottom: 15%;
+            right: 10%;
+            background: radial-gradient(circle, rgba(0, 255, 157, 0.2) 0%, transparent 70%);
+            animation: float 10s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-20px) translateX(10px); }
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .method-number {
+                font-size: 1.1rem;
+                padding: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    
+    <div class="container">
+        <header>
+            <h1 class="logo">ZY-OFFC</h1>
+            <p class="tagline">Secure Payment Gateway</p>
+        </header>
+        
+        <div class="payment-container">
+            <div class="payment-method">
+                <div class="method-header">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_dana_blue.svg" alt="DANA" class="method-icon">
+                    <h2 class="method-title">DANA Payment</h2>
+                </div>
+                <div class="method-details">
+                    <p>Send your payment to the following DANA number:</p>
+                    <div class="method-number">083152912199</div>
+                    <button class="copy-btn" onclick="copyToClipboard('083152912199')">Copy Number</button>
+                </div>
+            </div>
+            
+            <div class="payment-method">
+                <div class="method-header">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/GoPay_logo.svg/1200px-GoPay_logo.svg.png" alt="GoPay" class="method-icon">
+                    <h2 class="method-title">GoPay Payment</h2>
+                </div>
+                <div class="method-details">
+                    <p>Our GoPay payment method will be available soon:</p>
+                    <div class="method-number coming-soon">COMING SOON</div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>&copy; 2023 ZY-OFFC. All rights reserved.</p>
+        </footer>
+    </div>
+    
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                alert('Copied to clipboard: ' + text);
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
+    </script>
+</body>
+  </html>
